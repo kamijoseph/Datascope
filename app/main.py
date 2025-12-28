@@ -16,7 +16,7 @@ st.set_page_config(
     page_icon = "📈"
 )
 
-st.title("📊 DataScope+ | Interactive Data Analyzer & Cleaner")
+st.title("📊 DataScope+ | Interactive Data Analyzer & Cleaner |")
 st.markdown("""
 Welcome to **DataScope+**, an interactive tool to explore, clean, and visualize your datasets.
 Upload your CSV, Excel, or Stata files and get automated insights with interactive charts and EDA.
@@ -49,3 +49,15 @@ def load_data(file):
     except Exception as e:
         st.error(f"Error loading file: {e}")
         return None
+    
+# data cleaning function
+def clean_data(df, strategy="auto"):
+    cleaned_df = df.copy()
+    for column in cleaned_df.columns:
+        if cleaned_df[column].isnull().sum() > 0:
+            if pd.api.types.is_datetime64_any_dtype(cleaned_df[column]):
+                cleaned_df[column].fillna(cleaned_df[column].mean() if strategy=="auto" else 0, inplace=True)
+            elif pd.api.types.is_datetime64_any_dtype(cleaned_df[column]):
+                cleaned_df[column].fillna(cleaned_df[column].median(), inplace=True)
+            else:
+                cleaned_df[column].fillna(cleaned_df[column].mode()[0], inplace=True)
