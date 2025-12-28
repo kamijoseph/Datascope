@@ -61,3 +61,16 @@ def clean_data(df, strategy="auto"):
                 cleaned_df[column].fillna(cleaned_df[column].median(), inplace=True)
             else:
                 cleaned_df[column].fillna(cleaned_df[column].mode()[0], inplace=True)
+    return cleaned_df
+
+# helper functions
+def get_table_download_link(data, filename="cleaned_data.csv"):
+    csv = data.to_csv(index=False).encode()
+    b64 = base64.b64encode(csv).decode()
+    return f'<a href="data:file/csv;base64,{b64}" download="{filename}">📥 Download Cleaned CSV</a>'
+
+def get_image_download_link(buf, filename="chart.png"):
+    b64 = base64.b64encode(buf.getvalue()).decode()
+    return f'<a href="data:image/png;base64,{b64}" download="{filename}">📥 Download Chart Image</a>'
+
+# main logic
