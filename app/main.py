@@ -92,7 +92,7 @@ if uploaded_file:
             st.dataframe(data.dtypes.rename("Data Type"))
         
         # missing values and dplicates expander
-        with st.expander("Missing & Duplicate Values"):
+        with st.expander("Missing Values & Duplicate Values"):
             missing = data.isnull().sum()
             duplicates = data.duplicated().sum()
             st.write(f"**Duplicates:**", duplicates)
