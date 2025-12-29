@@ -84,7 +84,8 @@ if uploaded_file:
         st.dataframe(data.tail(10))
         st.markdown("---")
 
-        st.subheader("Dataset Summary & INsights")
+        # summary and data insighst
+        st.subheader("Dataset Summary & Insights")
 
         # shape and dtypes expander
         with st.expander("Shape & Column Types"):
@@ -100,4 +101,9 @@ if uploaded_file:
             st.dataframe(
                 missing[missing > 0].sort_values(ascending=False)
             )
-            
+        
+        # brief stats expander
+        with st.expander("Brief Numerical Stats"):
+            st.dataframe(
+                data.describe().T
+            )
