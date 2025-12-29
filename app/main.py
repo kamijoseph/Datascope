@@ -107,3 +107,18 @@ if uploaded_file:
             st.dataframe(
                 data.describe().T
             )
+        
+        # outliiers expander
+        with st.expander("Outliers (Numeric)"):
+            numeric_cols = data.select_dtypes(include=np.number).columns.tolist()
+            for column in numeric_cols:
+                Q1 = data[column].quantile(0.25)
+                Q3 = data[column].quantile(0.75)
+                IQR = Q3 - Q1
+                outliers = data[
+                    (data[column] < Q1 - 1.5 * IQR) | (data[column] > Q3 + 1.5 * IQR)
+                ][column]
+                outliers_count = len(outliers)
+                st.write(
+                    f"**{column}**: {outliers_count} outliers detected!"
+                )
