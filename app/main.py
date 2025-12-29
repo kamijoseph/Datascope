@@ -51,16 +51,26 @@ def load_data(file):
         return None
     
 # data cleaning function
-def clean_data(df, strategy="auto"):
+def clean_data(df, strategy):
     cleaned_df = df.copy()
+
+    if strategy == "drop":
+        return cleaned_df.dropna()
+
     for column in cleaned_df.columns:
         if cleaned_df[column].isnull().sum() > 0:
             if pd.api.types.is_datetime64_any_dtype(cleaned_df[column]):
-                cleaned_df[column].fillna(cleaned_df[column].mean() if strategy=="auto" else 0, inplace=True)
+                if strategy == "auto":
+                    cleaned_df[column].fillna(cleaned_df[column].mean(), inplace=True)
+                elif strategy == "zero":
+                    cleaned_df[column].fillna(0, inplace=True)
+
             elif pd.api.types.is_datetime64_any_dtype(cleaned_df[column]):
                 cleaned_df[column].fillna(cleaned_df[column].median(), inplace=True)
+
             else:
                 cleaned_df[column].fillna(cleaned_df[column].mode()[0], inplace=True)
+
     return cleaned_df
 
 # helper functions
@@ -122,3 +132,41 @@ if uploaded_file:
                 st.write(
                     f"**{column}**: {outliers_count} outliers detected!"
                 )
+        
+        st.sidebar.header("Data Cleaning Options")
+        cleaning_strategy = st.sidebar.radio(
+            "Fill Missing Values Strategy",
+            ["auto", "zero", "drop"]
+        )
+        enable_cleaning = st.sidebar.checkbox(
+            "Enbale Cleaning",
+            True
+        )
+
+        if enable_cleaning:
+            data_cleaned = clean_data(data, cleaning_strategy)
+
+            st.subheader("Cleaned Dataset Preview: Top 10")
+            st.dataframe(data_cleaned.head(10))
+
+            st.subheader("Cleaned Dataset Preview: Bottom 10")
+            st.dataframe(data_cleaned.tail(10))
+        else:
+            data_cleaned = data
+
+        # download link
+        st.markdown(
+            get_table_download_link(data_cleaned),
+            unsafe_allow_html = True
+        )
+
+        with st.expander("Cleaned data shape & missing values"):
+            st.write("**Rows X Columns:**", data_cleaned.shape)
+            st.write("**Missing values for cleaned data:**")
+            missing_cleaned = data_cleaned.isnull().sum()
+            st.dataframe(
+                missing_cleaned[missing_cleaned > 0].sort_values(ascending=False)
+            )
+        st.markdown("---")
+
+        # Visualizations
