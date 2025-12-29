@@ -67,11 +67,11 @@ def clean_data(df, strategy="auto"):
 def get_table_download_link(data, filename="cleaned_data.csv"):
     csv = data.to_csv(index=False).encode()
     b64 = base64.b64encode(csv).decode()
-    return f'<a href="data:file/csv;base64,{b64}" download="{filename}">📥 Download Cleaned CSV</a>'
+    return f'<a href="data:file/csv;base64,{b64}" download="{filename}">Download Cleaned CSV</a>'
 
 def get_image_download_link(buf, filename="chart.png"):
     b64 = base64.b64encode(buf.getvalue()).decode()
-    return f'<a href="data:image/png;base64,{b64}" download="{filename}">📥 Download Chart Image</a>'
+    return f'<a href="data:image/png;base64,{b64}" download="{filename}">Download Chart Image</a>'
 
 # main logic
 if uploaded_file:
@@ -85,6 +85,19 @@ if uploaded_file:
         st.markdown("---")
 
         st.subheader("Dataset Summary & INsights")
+
+        # shape and dtypes expander
         with st.expander("Shape & Column Types"):
             st.write("**Rows X Columns:**", data.shape)
             st.dataframe(data.dtypes.rename("Data Type"))
+        
+        # missing values and dplicates expander
+        with st.expander("Missing & Duplicate Values"):
+            missing = data.isnull().sum()
+            duplicates = data.duplicated().sum()
+            st.write(f"**Duplicates:**", duplicates)
+            st.write("**Missing Values:**")
+            st.dataframe(
+                missing[missing > 0].sort_values(ascending=False)
+            )
+            
