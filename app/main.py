@@ -13,17 +13,17 @@ import base64
 st.set_page_config(
     page_title = "DataScope+",
     layout = "wide",
-    page_icon = "📈"
+    page_icon = "📊"
 )
 
-st.title("📊 DataScope+ | Interactive Data Analyzer & Cleaner |")
+st.title(" DataScope+ | Interactive Data Analyzer & Cleaner |")
 st.markdown("""
 Welcome to **DataScope+**, an interactive tool to explore, clean, and visualize your datasets.
 Upload your CSV, Excel, or Stata files and get automated insights with interactive charts and EDA.
 """)
 
 # upload
-uploaded_life = st.file_uploader(
+uploaded_file = st.file_uploader(
     "Upload Dataset (csv, xlsx, xls, dta)",
     type = ["csv", "xlsx", "xls", "dta"]
 )
@@ -74,3 +74,12 @@ def get_image_download_link(buf, filename="chart.png"):
     return f'<a href="data:image/png;base64,{b64}" download="{filename}">📥 Download Chart Image</a>'
 
 # main logic
+if uploaded_file:
+    data = load_data(uploaded_file)
+    if data is not None:
+        st.success("File uploaded succesfully !!!")
+        st.subheader("Preview Dataset: Top 10")
+        st.dataframe(data.head(10))
+        st.subheader("Preview Dataset: Bottom 10")
+        st.dataframe(data.tail(10))
+        st.markdown("---")
