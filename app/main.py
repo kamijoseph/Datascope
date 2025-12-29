@@ -83,3 +83,8 @@ if uploaded_file:
         st.subheader("Preview Dataset: Bottom 10")
         st.dataframe(data.tail(10))
         st.markdown("---")
+
+        st.subheader("Dataset Summary & INsights")
+        with st.expander("Shape & Column Types"):
+            st.write("**Rows X Columns:**", data.shape)
+            st.dataframe(data.dtypes.rename("Data Type"))
