@@ -232,3 +232,10 @@ if uploaded_file:
                     )
                 
                 # scatter plot
+                elif chart_type == "Scatter Plot":
+                    sns.scatterplot(
+                        data = data_filtered,
+                        x = x_axis,
+                        y = y_axis,
+                        ax = ax
+                    )
