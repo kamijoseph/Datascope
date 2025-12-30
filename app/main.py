@@ -169,6 +169,7 @@ if uploaded_file:
             )
         st.markdown("---")
 
+        # column select for eda and vizz
         st.subheader("Column Selection for EDA & Visualization")
         selected_columns = st.multiselect(
             "**Choose Columns to Visualize**",
@@ -187,11 +188,12 @@ if uploaded_file:
         # seaborn charts
         with chart_tab[0]:
             chart_type = st.selectbox(
-                "Select Seaborn Chart Type",
-                ["Line Chart", "Bar Chart", "Scatter Plot", "Box Plot", "Histogram", "Heatmap", "Pie Chart"]
+                "Select Seaborn Plot Type",
+                ["Line Plot", "Bar Plot", "Scatter Plot", "Box Plot", "Histogram", "Heatmap", "Pie Chart"]
             )
             buf = io.BytesIO()
 
+            # pie charts
             if chart_type == "Pie Chart":
                 pie_col = st.selectbox("**Column for Pie Chart**", selected_columns)
                 st.write(f"**IF THE CHART LOOKS WEIRD, YOU SHOULDNT BE USING THE {chart_type.upper()} FOR THE SELECTED COLUMN**")
@@ -206,3 +208,27 @@ if uploaded_file:
                 ax.axis("equal")
                 st.pyplot(fig)
                 fig.savefig(buf, format="png")
+            else:
+                x_axis = st.selectbox("X-axis", selected_columns)
+                y_axis = st.selectbox("Y-axis", selected_columns)
+                fig, ax = plt.subplots(figsize=(10, 6))
+
+                # line chart
+                if chart_type == "Line Plot":
+                    sns.lineplot(
+                        data = data_filtered,
+                        x = x_axis,
+                        y = y_axis,
+                        ax = ax
+                    )
+                
+                # bar chart
+                elif chart_type == "Bar Plot":
+                    sns.barplot(
+                        data = data_filtered,
+                        x = x_axis,
+                        y = y_axis,
+                        ax = ax
+                    )
+                
+                # scatter plot
