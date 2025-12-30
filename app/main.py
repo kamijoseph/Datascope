@@ -169,4 +169,24 @@ if uploaded_file:
             )
         st.markdown("---")
 
+        st.subheader("Column Selection for EDA & Visualization")
+        selected_columns = st.multiselect(
+            "Choose Columns",
+            data_cleaned.columns.tolist(),
+            default = data_cleaned.columns.tolist()
+        )
+        data_filtered = data_cleaned[selected_columns]
+
         # Visualizations
+        st.subheader("Visualization")
+        chart_tab = st.tabs([
+            "**Seaborn Charts**",
+            "**Plotly Interactive Charts**"
+        ])
+
+        # seaborn charts
+        with chart_tab[0]:
+            chart_type = st.selectbox(
+                "Select Seaborn Chart Type",
+                ["Line", "Bar",]
+            )
