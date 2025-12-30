@@ -237,6 +237,8 @@ if uploaded_file:
                         data = data_filtered,
                         x = x_axis,
                         y = y_axis,
+                        hue = x_axis,
+                        palette = "rocket",
                         ax = ax
                     )
                 
@@ -246,5 +248,32 @@ if uploaded_file:
                         data = data_filtered,
                         x = x_axis,
                         y = y_axis,
+                        hue = x_axis,
+                        palette = "magma",
                         ax = ax
                     )
+                
+                # histogran
+                elif chart_type == "Histogram":
+                    sns.histplot(
+                        data_filtered[y_axis],
+                        kde = True,
+                        ax = ax
+                    )
+                
+                # Heatmap
+                elif chart_type == "Heatmap":
+                    corr = data_filtered.select_dtypes(include="number").corr()
+                    sns.heatmap(
+                        corr,
+                        annot = True,
+                        cmap = "coolwarm",
+                        fmt = ".2f",
+                        ax = ax
+                    )
+                st.pyplot(fig)
+                st.savefig(buf, format="png")
+            st.markdown(
+                get_image_download_link(buf),
+                unsafe_allow_html = True
+            )
