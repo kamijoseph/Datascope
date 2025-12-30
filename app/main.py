@@ -171,7 +171,7 @@ if uploaded_file:
 
         st.subheader("Column Selection for EDA & Visualization")
         selected_columns = st.multiselect(
-            "Choose Columns",
+            "**Choose Columns to Visualize**",
             data_cleaned.columns.tolist(),
             default = data_cleaned.columns.tolist()
         )
@@ -191,3 +191,18 @@ if uploaded_file:
                 ["Line Chart", "Bar Chart", "Scatter Plot", "Box Plot", "Histogram", "Heatmap", "Pie Chart"]
             )
             buf = io.BytesIO()
+
+            if chart_type == "Pie Chart":
+                pie_col = st.selectbox("**Column for Pie Chart**", selected_columns)
+                st.write(f"**IF THE CHART LOOKS WEIRD, YOU SHOULDNT BE USING THE {chart_type.upper()} FOR THE SELECTED COLUMN**")
+                counts = data_filtered[pie_col].value_counts()
+                fig, ax = plt.subplots(figsize=(6,6))
+                ax.pie(
+                    counts,
+                    labels = counts.index,
+                    autopct = "%1.1f%%",
+                    startangle = 90
+                )
+                ax.axis("equal")
+                st.pyplot(fig)
+                fig.savefig(buf, format="png")
