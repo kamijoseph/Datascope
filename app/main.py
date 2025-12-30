@@ -188,5 +188,6 @@ if uploaded_file:
         with chart_tab[0]:
             chart_type = st.selectbox(
                 "Select Seaborn Chart Type",
-                ["Line", "Bar",]
+                ["Line Chart", "Bar Chart", "Scatter Plot", "Box Plot", "Histogram", "Heatmap", "Pie Chart"]
             )
+            buf = io.BytesIO()
