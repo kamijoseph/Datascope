@@ -272,7 +272,7 @@ if uploaded_file:
                         ax = ax
                     )
                 st.pyplot(fig)
-                st.savefig(buf, format="png")
+                fig.savefig(buf, format="png")
             st.markdown(
                 get_image_download_link(buf),
                 unsafe_allow_html = True
