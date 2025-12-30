@@ -239,3 +239,12 @@ if uploaded_file:
                         y = y_axis,
                         ax = ax
                     )
+                
+                # box plot
+                elif chart_type == "Box Plot":
+                    sns.boxplot(
+                        data = data_filtered,
+                        x = x_axis,
+                        y = y_axis,
+                        ax = ax
+                    )
