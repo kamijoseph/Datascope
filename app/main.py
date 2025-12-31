@@ -181,6 +181,7 @@ if uploaded_file:
 
         # Visualizations
         st.subheader("Visualization")
+        st.write("**NOTE: Visualization may take a minute to render. Runtime is directly proportional to dataset size and state.**")
         chart_tab = st.tabs([
             "**Seaborn Charts**",
             "**Plotly Interactive Charts**"
@@ -327,10 +328,11 @@ if uploaded_file:
                     )
                 
                 # plotly histogram
-                elif plotly_chart_type == "Box Plot":
+                elif plotly_chart_type == "Histogram Plot":
                     fig = px.histogram(
                         data_filtered,
-                        x = y_axis
+                        x = x_axis,
+                        nbins = 30
                     )
                 
                 # plotly box plot
