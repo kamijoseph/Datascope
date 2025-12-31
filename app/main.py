@@ -286,6 +286,8 @@ if uploaded_file:
                 ["Scatter Plot", "Line Plot", "Bar Plot", "Histogram Plot", "Box Plot", "Pie Chart"]
             )
             st.write(f"**NOTE: IF THE CHART LOOKS WEIRD OR DOESNT RENDER, YOU SHOULDNT BE USING THE {plotly_chart_type.upper()} FOR THE SELECTED COLUMN**")
+
+            # plotly pie chart
             if plotly_chart_type == "Pie Chart":
                 pie_col = st.selectbox(
                     "Column for Plotly Pie Chart",
@@ -296,6 +298,25 @@ if uploaded_file:
                     names = pie_col,
                     title = f"Pie Chart of {pie_col}"
                 )
+            else:
+                x_axis = st.selectbox("X-axis (Plotly)", selected_columns)
+                y_axis = st.selectbox("Y-axis (Plotly)", selected_columns)
+
+                # plotly scatter
+                if plotly_chart_type == "Scatter Plot":
+                    fig = px.scatter(
+                        data_filtered,
+                        x = x_axis,
+                        y = y_axis
+                    )
+                
+                # plotly line plot
+                elif plotly_chart_type == "Line Plot":
+                    fig = px.line(
+                        data_filtered,
+                        x = x_axis,
+                        y = y_axis
+                    )
 
             st.plotly_chart(
                 fig,
