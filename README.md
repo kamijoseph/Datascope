@@ -7,7 +7,7 @@ This project emphasizes **practical EDA**, **data quality inspection**, and **re
 
 ---
 
-## [Click to live experiment](https://datascope-plus.streamlit.app)
+## [Click to live WebApp](https://datascope-plus.streamlit.app)
 
 
 ---
