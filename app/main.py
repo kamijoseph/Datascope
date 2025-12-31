@@ -310,7 +310,7 @@ if uploaded_file:
                         y = y_axis
                     )
                 
-                # plotly line plot
+                # plotly line plots
                 elif plotly_chart_type == "Line Plot":
                     fig = px.line(
                         data_filtered,
