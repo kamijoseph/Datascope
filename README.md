@@ -15,7 +15,7 @@ This project emphasizes **practical EDA**, **data quality inspection**, and **re
 ### TL;DR (for the lazy)
 **DataScope+** is a practical, analyst-focused data exploration and cleaning tool that reflects real-world workflows and sound statistical judgment.
 
-## Note: Remember to be kind, i am still a novice but learning and some things may break or all of them. Just raise the issues. My contact info is on Bio
+## Note: I am still a novice but learning and some things may break or all of them. Just raise the issues, or reach out. My contact info is on Bio
 
 
 ---
