@@ -192,11 +192,11 @@ if uploaded_file:
                 ["Line Plot", "Bar Plot", "Scatter Plot", "Box Plot", "Histogram", "Heatmap", "Pie Chart"]
             )
             buf = io.BytesIO()
+            st.write(f"**NOTE: IF THE CHART LOOKS WEIRD OR DOESNT RENDER, YOU SHOULDNT BE USING THE {chart_type.upper()} FOR THE SELECTED COLUMN**")
 
             # pie charts
             if chart_type == "Pie Chart":
                 pie_col = st.selectbox("**Column for Pie Chart**", selected_columns)
-                st.write(f"**IF THE CHART LOOKS WEIRD, YOU SHOULDNT BE USING THE {chart_type.upper()} FOR THE SELECTED COLUMN**")
                 counts = data_filtered[pie_col].value_counts()
                 fig, ax = plt.subplots(figsize=(6,6))
                 ax.pie(
@@ -276,4 +276,27 @@ if uploaded_file:
             st.markdown(
                 get_image_download_link(buf),
                 unsafe_allow_html = True
+            )
+
+        # plotly charts
+        with chart_tab[1]:
+            plotly_chart_type = st.selectbox(
+                "Plotly Chart Type",
+                ["Scatter Plot", "Line Plot", "Bar Plot", "Histogram Plot", "Box Plot", "Pie Chart"]
+            )
+            st.write(f"**NOTE: IF THE CHART LOOKS WEIRD OR DOESNT RENDER, YOU SHOULDNT BE USING THE {plotly_chart_type.upper()} FOR THE SELECTED COLUMN**")
+            if plotly_chart_type == "Pie Chart":
+                pie_col = st.selectbox(
+                    "Column for Plotly Pie Chart",
+                    selected_columns
+                )
+                fig = px.pie(
+                    data_filtered,
+                    names = pie_col,
+                    title = f"Pie Chart of {pie_col}"
+                )
+
+            st.plotly_chart(
+                fig,
+                use_container_width = True
             )
