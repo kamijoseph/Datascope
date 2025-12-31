@@ -317,8 +317,34 @@ if uploaded_file:
                         x = x_axis,
                         y = y_axis
                     )
+                
+                # plotly bar plot
+                elif plotly_chart_type == "Bar Plot":
+                    fig = px.bar(
+                        data_filtered,
+                        x = x_axis,
+                        y = y_axis
+                    )
+                
+                # plotly histogram
+                elif plotly_chart_type == "Box Plot":
+                    fig = px.histogram(
+                        data_filtered,
+                        x = y_axis
+                    )
+                
+                # plotly box plot
+                elif plotly_chart_type == "Box Plot":
+                    fig = px.box(
+                        data_filtered,
+                        x = x_axis,
+                        y = y_axis
+                    )
 
             st.plotly_chart(
                 fig,
                 use_container_width = True
             )
+
+else:
+    st.info("**Please Upload a proper structured dataset to start analyzing**")
