@@ -1,9 +1,3 @@
-
-Below is a **dedicated, production-grade `README.md`** you can drop straight into GitHub.
-It’s written to appeal to **hirers, reviewers, and technical users**, with clarity over hype.
-
----
-
 # 📊 DataScope+ — Interactive Data Analyzer & Cleaner
 
 **DataScope+** is an end-to-end interactive data exploration, cleaning, and visualization tool built with **Streamlit** and the Python data stack.
