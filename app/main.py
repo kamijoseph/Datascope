@@ -100,7 +100,8 @@ if uploaded_file:
         # shape and dtypes expander
         with st.expander("Shape & Column Types"):
             st.write("**Rows X Columns:**", data.shape)
-            st.dataframe(data.dtypes.rename("Data Type"))
+            st.dataframe(data.dtypes.astype(str).rename("Data Type"))
+
         
         # missing values and dplicates expander
         with st.expander("Missing Values & Duplicate Values"):
