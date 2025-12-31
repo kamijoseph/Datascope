@@ -287,7 +287,7 @@ if uploaded_file:
             )
             st.write(f"**NOTE: IF THE CHART LOOKS WEIRD OR DOESNT RENDER, YOU SHOULDNT BE USING THE {plotly_chart_type.upper()} FOR THE SELECTED COLUMN**")
 
-            # plotly pie chart
+            # plotly pie charts
             if plotly_chart_type == "Pie Chart":
                 pie_col = st.selectbox(
                     "Column for Plotly Pie Chart",
