@@ -3,3 +3,6 @@ seaborn
 plotly
 numpy
 pandas
+openpyxl
+xlrd
+pyarrow
