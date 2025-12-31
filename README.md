@@ -7,9 +7,7 @@ This project emphasizes **practical EDA**, **data quality inspection**, and **re
 
 ---
 
-## Live Demo
-
-[Click to live experiment](https://datascope-plus.streamlit.app)
+## [Click to live experiment](https://datascope-plus.streamlit.app)
 
 
 ---
@@ -17,11 +15,14 @@ This project emphasizes **practical EDA**, **data quality inspection**, and **re
 ### TL;DR (for the lazy)
 **DataScope+** is a practical, analyst-focused data exploration and cleaning tool that reflects real-world workflows and sound statistical judgment.
 
+## Note: Remember to be kind, i am still a novice but learning and some things may break or all of them. Just raise the issues. My contact info is on Bio
+
+
 ---
 
 ## Problem Statement
 
-In real-world data work, datasets are:
+In real world data work, datasets are:
 
 * messy
 * incomplete
@@ -156,30 +157,6 @@ This mirrors a **professional EDA workflow** used in analytics teams.
 
 ---
 
-## Requirements
-
-Create a virtual environment (recommended) and install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Example `requirements.txt`:
-
-```
-streamlit
-pandas
-numpy
-matplotlib
-seaborn
-plotly
-openpyxl
-xlrd
-pyarrow
-```
-
----
-
 ## Known Warnings & Design Decisions
 
 * Apache Arrow warnings may occur when rendering metadata objects (e.g., raw `dtype` objects).
@@ -189,18 +166,18 @@ pyarrow
 
 ---
 
-## Why This Project Matters to Employers
+## Why This Project Matters for me
 
 This project demonstrates:
 
-* Understanding of real-world data problems
+* Understanding of real world data problems
 * Strong EDA fundamentals
 * UI/UX decisions grounded in statistics
 * Safe data handling practices
-* Ability to build production-ready analytical tools
+* Ability to build production ready analytical tools
 * Familiarity with modern Python data ecosystems
 
-It reflects how analysts actually work — not just how tutorials pretend they do.
+It reflects how analysts actually work not just how tutorials pretend they do. and working on the project was the most learning and blissful experience i have ever had.
 
 ---
 
@@ -211,9 +188,9 @@ It reflects how analysts actually work — not just how tutorials pretend they d
 * Advanced outlier diagnostics
 * Caching for large datasets
 * Multi-dataset comparison
-* Role-based UI (analyst vs stakeholder)
+* Role based UI (analyst vs stakeholder)
 * Export to Parquet
-* Lightweight ML diagnostics (optional)
+* Lightweight ML diagnostics (optional), especially for feature importances
 
 ---
 
@@ -231,6 +208,7 @@ If you:
 👉 **Please open an issue on GitHub** so it can be tracked and addressed properly.
 
 ---
+
 
 ## License
 
