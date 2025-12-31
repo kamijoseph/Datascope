@@ -1,4 +1,4 @@
-# 📊 DataScope+ — Interactive Data Analyzer & Cleaner
+# 📊 DataScope+ | An Interactive Data Analyzer & Cleaner |
 
 **DataScope+** is an end-to-end interactive data exploration, cleaning, and visualization tool built with **Streamlit** and the Python data stack.
 It enables analysts, data scientists, and researchers to upload raw datasets and quickly derive structure, quality insights, and visual understanding — without writing a single line of analysis code.
